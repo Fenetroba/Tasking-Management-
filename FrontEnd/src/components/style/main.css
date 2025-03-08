@@ -1,0 +1,30 @@
+.main {
+
+  width: 95%;
+  margin: 20px;
+  height: 1000px;
+  background:#749cb57a;
+  display: grid;
+  grid-template-columns: 300px 1fr 1fr;
+  grid-template-rows: 500px 300px 1fr;
+  gap: 20px;
+  border-radius: 20px 0 0 0;
+  grid-template-areas: " detail detail image" " detail detail image" "down down down";
+  padding: 10px;
+
+}
+
+.displayDetail {
+  background-color: rgb(243, 242, 238);
+  grid-area: detail;
+}
+
+.box1 {
+  background-color: gray;
+  grid-area: image;
+}
+
+.box2 {
+  background-color: rgb(243, 242, 238);
+  grid-area: down;
+}

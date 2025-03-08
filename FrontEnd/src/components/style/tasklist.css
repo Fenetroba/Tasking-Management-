@@ -1,0 +1,22 @@
+.tasklistSlide{
+     position: fixed;
+     top: 0;
+     right: 0;
+     background: linear-gradient(135deg, #e8edf0 50%, #023d6e 90%);
+     height: 100vh;
+     width: 300px;
+     border-radius: 50px 0 0 0;
+     z-index: 100;
+}
+.closed{
+    position: fixed;
+    top: 0;
+    right: -300px;
+    transition: 1s;
+
+}
+.open{
+     top: 0;
+     right: 0px;
+     transition: 1s;
+}

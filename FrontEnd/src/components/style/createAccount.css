@@ -1,0 +1,53 @@
+.createAccount{
+     background-color: rgb(242, 255, 253);
+     position: fixed;
+     top: 0;
+     right: 0;
+     height: 100vh;
+     width: 230px;
+     z-index: 100;
+     
+
+}
+.closed{
+     position: fixed;
+     top: 0;
+     right: -300px;
+     transition: 1s;
+ 
+ }
+ .open{
+      top: 0;
+      right: 0px;
+      transition: 1s;
+ }
+ .createAccountContener{
+     padding: 10px ;
+     margin-top: 30px;
+ }
+ .createAccountContener h3{
+     font-size: 18px;
+     text-align: center;
+
+ }
+ .createAccountContener form{
+     box-shadow:  0 2px 4px rgba(0, 0, 0, 0.397);
+     padding: 10px;
+     height: 60vh;
+     display: flex;
+     justify-content: space-around;
+     flex-direction: column;
+     margin-top: 20px;
+ }
+  .createAccountContener form input{
+border: none;
+outline: none;
+padding: 5px 5px;
+box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.548);
+ }
+ .createAccountContener button{
+     padding: 6px 10px;
+     border: none;
+     background-color: var(--therd_color);
+     cursor: pointer;
+ }

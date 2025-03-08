@@ -1,0 +1,43 @@
+body{
+     background-color: var(--goodwhiet);
+     position: relative;
+}
+.AuthLayer{
+    /* background-color: var(--sign);  */
+    background: linear-gradient(135deg, #dfecfde8 50%, #749cb588 90%);
+position: relative;
+    height: 100vh;
+   max-width: 70%;
+
+}
+.AuthLayerChildPage{
+     position: absolute;
+     top: 20%;
+     right: -36%;
+     transition:  2s;
+     /* transform: translate(50%, 50%); */
+}
+.LoginButton{
+     position: absolute;
+     right: 0;
+     top: 50px;
+     border: none;
+     width: 200px;
+     background-color: var(--button);
+     height: 40px;
+     color: var(--goodwhiet);
+     font-size: 20px;
+     border-radius: 20px 0 0 0;
+     cursor: pointer;
+}
+.LoginButton:hover{
+     background-color: #13023a;
+}
+.BackButton{
+     /* position: relative; */
+     background-color: #000000;
+     width: 300px;
+     height: 500px;
+     border-radius: 20px 0 0 0;
+
+}

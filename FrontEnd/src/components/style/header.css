@@ -1,0 +1,53 @@
+.header_contener{
+     position: relative;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 30px;
+background-color: var(--blue);
+}
+.logoutBtn button{
+     font-size: 20px;
+     padding: 4px 40px;
+     border-radius: 5px;
+     border: none;
+     cursor: pointer;
+}
+.logoutBtn button:hover{
+     background-color: white;
+}
+.logoutBtn {
+ display: flex;
+gap: 20px;
+}
+.mobile_size{
+     display: none;
+}
+.modelsButton{
+     display: flex;
+     gap: 10px;
+     align-items: center;
+     padding: 2px 10px;
+     border-radius: 2px;
+     transition: 0.9s;
+     cursor: pointer;
+
+}
+.modelsButton:hover{
+     background-color: aliceblue;
+
+}
+@media screen and (max-width:600px) {
+     .mobile_size{
+          display: block;
+     }
+     .modelsButton{
+          position: fixed;
+          left: -40px;
+          top: 40%;
+          transform: rotate(-90deg);
+          background-color: black;
+          color: #fff;
+          border-radius: 0 0 10px 0;
+     }
+}
