@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./style/authLayer.css";
 const AuthLayer = () => {
   const [authButton, setAuthButton] = useState(false);
   const AuthButtonHandler = () => {
-    setAuthButton(!authButton);
+    setAuthButton((prev) => !prev);
   };
+
   return (
     <div className="AuthLayer">
       <button className="LoginButton" onClick={AuthButtonHandler}>

@@ -3,7 +3,7 @@
   width: 95%;
   margin: 20px;
   height: 1000px;
-  background:#749cb57a;
+  /* background:#749cb57a; */
   display: grid;
   grid-template-columns: 300px 1fr 1fr;
   grid-template-rows: 500px 300px 1fr;
@@ -15,16 +15,21 @@
 }
 
 .displayDetail {
-  background-color: rgb(243, 242, 238);
+  background-color: rgb(255, 255, 255);
   grid-area: detail;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.623);
 }
 
 .box1 {
-  background-color: gray;
+  background-color: rgb(255, 255, 255);
   grid-area: image;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.671);
+
 }
 
 .box2 {
-  background-color: rgb(243, 242, 238);
+  background-color: rgb(255, 255, 255);
   grid-area: down;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.747);
+
 }

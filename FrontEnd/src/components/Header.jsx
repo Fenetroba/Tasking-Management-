@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import "./style/header.css";
 import { RiArrowDownWideLine, RiMenu3Fill } from "react-icons/ri";
 import Modal from "./Modal";
+import {useDispatch, useSelector} from 'react-redux'
+import { logoutUser } from "../store/userslice";
+import { useEffect } from "react";
 
 const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+   const dispatch=useDispatch()
+   const Logout=()=>{
+    dispatch(logoutUser())
+  
+   }
+   
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -28,7 +37,7 @@ const Header = () => {
         </div>
         <Modal isModalOpen={isModalOpen} closeModel={toggleModal} />
         <div className="logoutBtn">
-          <button>Logout</button>
+          <button onClick={Logout}>Logout</button>
 
           <p className="mobile_size">
             <RiMenu3Fill style={{ fontSize: "30px", cursor: "pointer" }} />

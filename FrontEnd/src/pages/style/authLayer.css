@@ -12,7 +12,7 @@ position: relative;
 }
 .AuthLayerChildPage{
      position: absolute;
-     top: 20%;
+     top: 10%;
      right: -36%;
      transition:  2s;
      /* transform: translate(50%, 50%); */
@@ -20,7 +20,7 @@ position: relative;
 .LoginButton{
      position: absolute;
      right: 0;
-     top: 50px;
+     top: 20px;
      border: none;
      width: 200px;
      background-color: var(--button);
@@ -35,7 +35,7 @@ position: relative;
 }
 .BackButton{
      /* position: relative; */
-     background-color: #000000;
+     background-color: #b1c6c9;
      width: 300px;
      height: 500px;
      border-radius: 20px 0 0 0;
