@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import ConnectDb from './lib/Db.js';
 import cors from 'cors';
 import AuthRouter from './router/UserAuth.router.js';
+import TaskRouter from './router/Task.router.js';
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use(cors({
 
 // Routes
 app.use('/api/auth', AuthRouter);
+app.use('/api/task', TaskRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

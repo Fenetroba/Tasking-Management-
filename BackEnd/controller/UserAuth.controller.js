@@ -4,11 +4,11 @@ import env from 'dotenv'
 env.config()
 import jwt from 'jsonwebtoken'
 
-const SetToken = (UserId,UserEmail,UserName) => {
-  const refreshToken = jwt.sign({ UserId ,UserEmail,UserName}, process.env.REFRASH_SECRET_KEY, {
+const SetToken = (UserIds,UserEmail,UserName) => {
+  const refreshToken = jwt.sign({ UserIds ,UserEmail,UserName}, process.env.REFRASH_SECRET_KEY, {
     expiresIn: '7d'
   })
-  const accsessTocken = jwt.sign({ UserId,UserEmail,UserName }, process.env.ACSSESS_SECRET_KEY, {
+  const accsessTocken = jwt.sign({ UserIds,UserEmail,UserName }, process.env.ACSSESS_SECRET_KEY, {
     expiresIn: '15m'
   })
   return { refreshToken, accsessTocken }

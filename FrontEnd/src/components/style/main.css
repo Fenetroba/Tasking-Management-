@@ -25,11 +25,75 @@
   grid-area: image;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.671);
 
+
 }
 
 .box2 {
   background-color: rgb(255, 255, 255);
   grid-area: down;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.747);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  
+
+}
+.create-Task-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.create-Task-form form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 30px;
+  gap: 20px;
+
+}
+.createTask h1{
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-top: 20px;
+}
+.create-Task-form label{
+  font-size: 18px;
+}
+.create-Task-form input,textarea{
+border: none;
+box-shadow: 0 0 1px black;
+padding: 6px;
+width: 100%;
+outline: none;
+}
+.submit-button{
+  background-color: #070838;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.submit-button:hover{
+  background-color: #0b0549;
+}
+.avarage_complitedTasks{
+  display: flex;
+  gap: 20px;
+ 
+}
+.avarage_complitedTasks h3{
+  font-size: 15px;
+  color: #494949;
+}
+.complitedTasks{
+  overflow-y: scroll;
+  box-shadow: 0 0 2px black;
+
+}
+.complitedTasks p{
+  text-align: center;
+  width: 400px;
 
 }
