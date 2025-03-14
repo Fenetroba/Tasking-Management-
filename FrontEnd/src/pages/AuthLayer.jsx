@@ -12,6 +12,14 @@ const AuthLayer = () => {
       <button className="LoginButton" onClick={AuthButtonHandler}>
         Login Now
       </button>
+    <div className="scrolle">
+  
+      <div className="box12"></div>
+      <div className="box22"></div>
+      <div className="box33"></div>
+     
+      
+    </div>
       <div className="AuthLayerChildPage">
         {authButton ? <Outlet /> : <div className="BackButton"></div>}
       </div>

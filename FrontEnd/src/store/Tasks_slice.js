@@ -1,24 +1,45 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "../lib/axios";
+import axios from "../lib/axios.js";
 
 const initialState = {
-  task: null,
+  tasks: [],
   loading: false,
-  error: null, // Added error state
+  error: null,
 };
 
-export const createTask = createAsyncThunk(
-  "task/create", // Use a unique string for the action type
+// Async thunk to create tasks
+export const createTasks = createAsyncThunk(
+  "task/create",
   async (taskData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/task/create", taskData, {
         withCredentials: true,
       });
-      return response.data; // Return the successful response data
+      return response.data;
     } catch (error) {
-      // Handle errors appropriately
       if (error.response) {
-        return rejectWithValue(error.response.data); // Return the entire error response
+        return rejectWithValue(error.response.data);
+      } else if (error.request) {
+        return rejectWithValue({ message: "No response from the server." });
+      } else {
+        return rejectWithValue({ message: "An error occurred: " + error.message });
+      }
+    }
+  }
+);
+
+// Async thunk to find tasks by title
+export const findTasks = createAsyncThunk(
+  "task/single",
+  async (FindTitle, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/task/single?title=${encodeURIComponent(FindTitle)}`, {
+        withCredentials: true,
+      });
+      return response.data; 
+    } catch (error) {
+      if (error.response) {
+        return rejectWithValue(error.response.data);
       } else if (error.request) {
         return rejectWithValue({ message: "No response from the server." });
       } else {
@@ -29,30 +50,41 @@ export const createTask = createAsyncThunk(
 );
 
 export const taskSlice = createSlice({
-  name: "task",
+  name: "tasksName",
   initialState,
   reducers: {
     setTask: (state, action) => {
-      state.task = action.payload; // Set task based on action payload
+      state.tasks = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createTask.pending, (state) => {
-        state.loading = true; // Set loading to true
+      .addCase(createTasks.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(createTask.fulfilled, (state, action) => {
+      .addCase(createTasks.fulfilled, (state, action) => {
         state.loading = false;
-        state.task = action.payload; // Set task from payload (adjust as needed)
-        state.error = null; // Clear any previous error
+        state.tasks.push(action.payload);
+        state.error = null;
       })
-      .addCase(createTask.rejected, (state, action) => {
-        state.loading = false; // Set loading to false
-        state.task = null; // Reset task on failure
-        state.error = action.payload.message || "Task creation failed"; // Capture error message
+      .addCase(createTasks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message || "Task creation failed";
+      })
+      .addCase(findTasks.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(findTasks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tasks = Array.isArray(action.payload) ? action.payload : [action.payload];
+        state.error = null;
+      })
+      .addCase(findTasks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message || "Failed to find tasks";
       });
   },
 });
 
 export const { setTask } = taskSlice.actions; 
-export default taskSlice.reducer; // Export reducer
+export default taskSlice.reducer;

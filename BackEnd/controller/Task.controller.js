@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 import Tasks from "../model/Task.model.js";
 
 export const CreatTasks = async (req, res) => {
-  const { title, description, image } = req.body; // Include userId in the request body
+  const { title, description, image,deadLine } = req.body; // Include userId in the request body
   const UserId = req.user.UserIds; // Access the user ID from the request object
   console.log("UserId Is :", UserId); // Log the user ID
 
   try {
     // Validate required fields
-    if (!title || !description) {
+    if (!title || !description || !deadLine) {
       return res.status(400).json({ message: "Title, description, and user ID are required.", success: false });
     }
 
@@ -18,6 +18,7 @@ export const CreatTasks = async (req, res) => {
       description: description,
       image: image, // This can be optional based on your model
       UserId: UserId, // Use the userId provided in the request
+      deadLine:deadLine
     });
 
     // Save the new task to the database
@@ -93,23 +94,27 @@ export const DeletUserTask =  async (req, res) => {
 };
 
 export const getSingleTask = async (req, res) => {
-    const  {title}  = req.query; // Assuming the title is passed as a query parameter
-  console.log("Title Is :", title); // Log the title
-    if (!title) {
-        return res.status(400).json({ message: "Title query parameter is required" });
-    }
+  const { title } = req.query; // Access the title from query parameters
+  console.log("Title is:", title); // Log the title
 
-    try {
-        // Use a case-insensitive regex search to find matching titles
-        const tasks = await Tasks.find({ title: { $regex: title, $options: 'i' } });
+  // Check if the title parameter is provided
+  if (!title) {
+      return res.status(400).json({ message: "Title query parameter is required" });
+  }
 
-        if (!tasks || tasks.length === 0) {
-            return res.status(404).json({ message: "No tasks found with that title" });
-        }
+  try {
+      // Use a case-insensitive regex search to find matching titles
+      const tasks = await Tasks.find({ title: { $regex: title, $options: 'i' } });
 
-        res.status(200).json(tasks);
-    } catch (error) {
-        console.error("Error searching tasks:", error);
-        res.status(500).json({ message: "Failed to search tasks", error: error.message });
-    }
+      // Check if any tasks were found
+      if (!tasks || tasks.length === 0) {
+          return res.status(404).json({ message: "No tasks found with that title" });
+      }
+
+      // Respond with the found tasks
+      res.status(200).json(tasks);
+  } catch (error) {
+      console.error("Error searching tasks:", error);
+      res.status(500).json({ message: "Failed to search tasks", error: error.message });
+  }
 };

@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import "./style/main.css";
-import {useDispatch} from 'react-redux'
-import {createTask} from '../store/Tasks_slice.js'
+import { useDispatch } from "react-redux";
+import { createTasks } from "../store/Tasks_slice.js";
+import TaskDetail from "./TaskDetail.jsx";
+import TaskList from "./TaskList"; // Import the TaskList component
+
 const Main = () => {
-// create the dispatch for the tasks data
-const dispatch=useDispatch()
-const [createTask,setCreateTask]=useState({
-  title:'',
-  description:'',
-  image:'',
-  deadLine:''
-})
+  const dispatch = useDispatch();
+  const [createTask, setCreateTask] = useState({
+    title: "",
+    description: "",
+    image: "",
+    deadLine: "",
+  });
 
-
+  const [selectedTask, setSelectedTask] = useState(null); // State for the selected task
 
   const CreateTaskHandleSubmit = async (e) => {
     e.preventDefault();
+    console.log(createTask);
     try {
-      dispatch(createTask(createTask))
+      dispatch(createTasks(createTask));
       setCreateTask({ title: "", description: "", deadLine: "", image: "" });
     } catch (error) {
-      console.log("the error is occer on the CreateTask" + error);
+      console.log("the error occurred on CreateTask: " + error);
     }
   };
 
@@ -28,18 +31,30 @@ const [createTask,setCreateTask]=useState({
     const file = e.target.files[0];
     if (file) {
       const render = new FileReader();
-
       render.onloadend = () => {
         setCreateTask({ ...createTask, image: render.result });
       };
       render.readAsDataURL(file);
     }
   };
+
+  // Function to set the selected task
+  const handleSelectTask = (task) => {
+    setSelectedTask(task);
+  };
+
   return (
     <div className="main">
-      <section className="displayDetail"></section>
-      {/* for create task from user */}
-
+      <section className="displayDetail">
+        <TaskDetail task={selectedTask} />{" "}
+        {/* Pass selectedTask to TaskDetail */}
+      </section>
+      <TaskList
+        taskList={true}
+        taskListHandler={() => {}}
+        onSelectTask={handleSelectTask}
+      />{" "}
+      {/* Pass the select task handler */}
       <section className="box1">
         <div className="createTask">
           <h1>Create Task</h1>
@@ -70,13 +85,14 @@ const [createTask,setCreateTask]=useState({
                   }
                   required
                   placeholder="Enter product description"
-                  minLength={0} maxLength={100}
-                  style={{width: "100%", height: "200px"}}
+                  minLength={0}
+                  maxLength={100}
+                  style={{ width: "100%", height: "200px" }}
                 />
               </div>
 
               <div className="form-group">
-                <label>deadLine</label>
+                <label>Deadline</label>
                 <input
                   type="date"
                   value={createTask.deadLine}
@@ -100,21 +116,15 @@ const [createTask,setCreateTask]=useState({
           </div>
         </div>
       </section>
-
       <section className="box2">
-    <div className="avarage_complitedTasks">
-<h3> Tasks Over View</h3>
-<h3> complited Tasks</h3>
-<h3> expird Tasks</h3>
-
-    </div>
-    <div className="complitedTasks">
-      <p>
-        Accomplished Tasks
-      </p>
-    </div>
-    
-
+        <div className="average_completedTasks">
+          <h3>Tasks Overview</h3>
+          <h3>Completed Tasks</h3>
+          <h3>Expired Tasks</h3>
+        </div>
+        <div className="completedTasks">
+          <p>Accomplished Tasks</p>
+        </div>
       </section>
     </div>
   );

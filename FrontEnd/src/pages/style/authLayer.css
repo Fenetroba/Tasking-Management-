@@ -1,41 +1,95 @@
-body{
+body {
      background-color: var(--goodwhiet);
      position: relative;
-}
-.AuthLayer{
-    /* background-color: var(--sign);  */
-    background: linear-gradient(135deg, #dfecfde8 50%, #749cb588 90%);
-position: relative;
-    height: 100vh;
-   max-width: 70%;
 
 }
-.AuthLayerChildPage{
+
+.scrolle {
+     overflow-y: scroll;
+     height: 100%;
+     background-image: url('../../assets/pusle (1).jpg');
+     background-size: cover;
+     background-position: center;
+     display: grid;
+     grid-template-columns: 50% 1fr 1fr;
+     grid-template-rows: 3% 1fr 1fr;
+     gap: 20px;
+     padding: 20px;
+  grid-template-areas: " box123 box123 box124" " box123 box123 box124" "box125 box125 box125";
+   
+   
+}
+
+.box12 {
+     background-color: rgba(218, 226, 255, 0.295);
+
+     grid-area: box123;
+     border: solid 1px var(--goodwhiet);
+     
+}
+
+.box22 {
+     background-color: rgba(218, 226, 255, 0.295);
+
+     border: solid 1px var(--goodwhiet);
+     
+     grid-area: box124;
+
+}
+
+.box33 {
+     background-color: rgba(218, 226, 255, 0.295);
+
+     border: solid 1px var(--goodwhiet);
+
+    
+     grid-area: box125;
+
+}
+
+
+.AuthLayer {
+     background: linear-gradient(135deg, #dfecfde8 50%, #749cb588 90%);
+
+
+     position: relative;
+     height: 100vh;
+     max-width: 70%;
+
+}
+
+.AuthLayerChildPage {
      position: absolute;
      top: 10%;
      right: -36%;
-     transition:  2s;
+     transition: 2s;
      /* transform: translate(50%, 50%); */
 }
-.LoginButton{
+
+.LoginButton {
      position: absolute;
-     right: 0;
+     right: -37px;
      top: 20px;
      border: none;
      width: 200px;
-     background-color: var(--button);
+     background-color: #10042e;
      height: 40px;
      color: var(--goodwhiet);
      font-size: 20px;
      border-radius: 20px 0 0 0;
      cursor: pointer;
 }
-.LoginButton:hover{
-     background-color: #13023a;
+
+.LoginButton:hover {
+     background-color: #0b0541;
 }
-.BackButton{
+
+.BackButton {
      /* position: relative; */
-     background-color: #b1c6c9;
+     background: linear-gradient(rgba(0, 0, 0, 0.486), rgba(174, 179, 224, 0.281)), url('../../assets/pusle (5).jpg');
+     background-position: center;
+     background-size: cover;
+     transition: transform 1s;
      width: 300px;
      height: 500px;
      border-radius: 20px 0 0 0;

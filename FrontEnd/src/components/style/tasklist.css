@@ -2,11 +2,13 @@
      position: fixed;
      top: 0;
      right: 0;
-     background: linear-gradient(135deg, #e8edf0 50%, #023d6e 90%);
+     background: #f6ffff;
      height: 100vh;
      width: 300px;
      border-radius: 50px 0 0 0;
      z-index: 100;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.616);
+
 }
 .closed{
     position: fixed;
@@ -19,4 +21,29 @@
      top: 0;
      right: 0px;
      transition: 1s;
+}
+.main_task_contener {
+     padding: 20px;
+}
+.main_task_contener p{
+     width: 100%;
+     padding: 10px 0;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+}
+.main_task_contener input{
+     border: none;
+     width: 88%;
+     height: 28px;
+     outline: none;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.452);
+}
+.searchIcone{
+     background-color: black;
+     color: #fcfcfc;
+     height: 28px;
+     font-size: 30px;
+     cursor: pointer;
+   
 }

@@ -151,7 +151,6 @@ export const authSlice = createSlice({
         state.loading = true; // Set loading to true
       })
       .addCase(CheckAuths.fulfilled, (state, action) => {
-        console.log(action); // Log action for debugging
         state.loading = false; // Set loading to false
         state.isAuthenticated = true; // Set authenticated state
         state.user = action.payload.user || null; // Set user based on response
