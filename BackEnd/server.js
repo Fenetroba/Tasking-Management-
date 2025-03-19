@@ -5,7 +5,7 @@ import ConnectDb from './lib/Db.js';
 import cors from 'cors';
 import AuthRouter from './router/UserAuth.router.js';
 import TaskRouter from './router/Task.router.js';
-
+const __dirname = path.resolve();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -37,6 +37,13 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Something went wrong!' });
 });
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/FrontEnd/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "FrontEnd", "dist", "index.html"));
+    });
+}
 // Connect to the database and start the server
 const startServer = async () => {
     try {

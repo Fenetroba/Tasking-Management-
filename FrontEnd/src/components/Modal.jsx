@@ -51,15 +51,14 @@ const createAccountHandler=()=>{
         <div className='taskList_model'>
           <button onClick={taskListHandler}>TaskList <RiContactsBook2Fill/></button>
           <TaskList taskList={taskList} taskListHandler={taskListHandler}/>
-          {/* <button onClick={createAccountHandler}>Socialmedia<RiMedal2Fill/></button> */}
-          {/* <CreateAccount CreateAccounts={CreateAccounts} createAccountHandler={createAccountHandler}  /> */}
+    
        
         </div>
         {children}
       </div>
 
     <div className='modals_test_contener'>
-    <h1 className='modalText'>Hi What You Want</h1>
+    <h1 className='modalText'>Tell me Your Tasks</h1>
     </div>
     </div>
   );

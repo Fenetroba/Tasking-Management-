@@ -48,6 +48,7 @@ const LoginPage = () => {
             required
             value={login.email}
             onChange={(e) => setLogin({ ...login, email: e.target.value })}
+            autocomplete="off"
           />
           <label htmlFor="password">Password</label>
           <input

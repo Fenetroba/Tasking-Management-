@@ -49,6 +49,7 @@ const RegisterPage = () => {
             placeholder="fenet roba"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
+            autocomplete="off"
           />
           <label>Email</label>
           <input
@@ -58,6 +59,7 @@ const RegisterPage = () => {
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
+            autocomplete="off"
           />
           <label>Password</label>
           <input
