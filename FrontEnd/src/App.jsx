@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import TaskListPage from "./pages/TaskListPage.jsx";
-import UserPageAuth from "./PageAuth/UserPageAuth.jsx"; // Updated name
+import UserPageAuth from "./PageAuth/UserPAgeAuth.jsx"; // Updated name
 import UserLayer from "./pages/UserLayer.jsx";
 import PageNofound from "./PageAuth/pageNofound.jsx";
 import { ToastContainer, toast } from "react-toastify";
