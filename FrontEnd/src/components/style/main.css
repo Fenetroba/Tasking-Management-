@@ -6,7 +6,7 @@
   /* background:#749cb57a; */
   display: grid;
   grid-template-columns: 300px 1fr 1fr;
-  grid-template-rows: 500px 300px 1fr;
+  grid-template-rows: 350px 300px 1fr;
   gap: 20px;
   border-radius: 20px 0 0 0;
   grid-template-areas: " detail detail image" " detail detail image" "down down down";
@@ -34,7 +34,7 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.747);
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   
 
 }
@@ -97,3 +97,56 @@ outline: none;
   width: 400px;
 
 }
+.deleteButton button  {
+  border: none;
+  font-size: 15px;
+  background-color: transparent;
+  
+}
+.deleteButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.486);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  gap: 5px;
+  position: relative;
+  bottom: -40px;
+}
+.average_completedTasks{
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.267);
+width: 300px;
+display: flex;
+justify-content: space-between;
+padding: 5px 10px;
+}
+
+.full_contener{
+  overflow-y: scroll;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.267);
+padding: 40px 0px;
+
+}
+.botton_contener{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+ @media screen and (max-width:800px) {
+  .box1 {
+    grid-column: detail detail;
+    display: none;
+
+  }
+
+  .bottomImage img{
+    width: 320px;
+    text-align: center;
+    display: none;
+  }
+
+  
+ }

@@ -2,12 +2,12 @@
      position: fixed;
      top: 0;
      right: 0;
-     background: #f6ffff;
+     background: #ffffff;
      height: 100vh;
      width: 300px;
-     border-radius: 50px 0 0 0;
-     z-index: 100;
-     box-shadow: 0 0 5px rgba(0, 0, 0, 0.616);
+   
+     z-index: 201;
+     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.616);
 
 }
 .closed{
@@ -37,7 +37,8 @@
      width: 88%;
      height: 28px;
      outline: none;
-     box-shadow: 0 0 1px rgba(0, 0, 0, 0.452);
+     box-shadow: 0 0 2px rgba(0, 0, 0, 0.452);
+     padding: 4px;
 }
 .searchIcone{
      background-color: black;
@@ -46,4 +47,18 @@
      font-size: 30px;
      cursor: pointer;
    
+}
+.getedTasks h2{
+     padding: 3px 10px;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.452);
+}
+.listTasksForFind{
+     padding: 10px;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.452);
+     display: flex;
+    gap: 30px;
+     cursor: pointer;
+}
+.getedTasks .listTasksForFind:nth-of-type(odd){
+     background-color: #e0e8eb;
 }

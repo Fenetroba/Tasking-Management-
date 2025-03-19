@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style/header.css";
-import { RiArrowDownWideLine, RiMenu3Fill } from "react-icons/ri";
+import { RiArrowDownWideLine, RiMenu3Fill, RiTaskLine } from "react-icons/ri";
 import Modal from "./Modal";
 import {useDispatch, useSelector} from 'react-redux'
 import { logoutUser } from "../store/userslice";
@@ -22,7 +22,8 @@ const Header = () => {
     <div className="header">
       <div className="header_contener">
         <div className="Logo">
-          <h1>Logo</h1>
+          <h1>TASK</h1>
+          <RiTaskLine style={{color:'goldenrod', marginLeft:'10px', fontSize:'30px'}}/>
         </div>
         <div className="modelsButton"  onMouseOver={toggleModal}>
           Details

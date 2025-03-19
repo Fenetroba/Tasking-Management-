@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../lib/axios.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
 
 const initialState = {
   user: null,
@@ -49,7 +50,7 @@ export const loginUser = createAsyncThunk(
            return rejectWithValue(error.response.data); // Return the full error response
          } else if (error.request) {
            console.error("No response received:", error.request);
-           const errorMessage = "No response from the server.";
+           const errorMessage = " Check Your Connection.";
            return rejectWithValue({ message: errorMessage }); // Return a structured error response
          } else {
            console.error("Error message:", error.message);
@@ -72,25 +73,6 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-async function apiCall() {
-     try {
-         const response = await axios.get('/protected-route');
-         console.log(response.data);
-     } catch (error) {
-         if (error.response && error.response.status === 401) {
-             // Access token expired, attempt to refresh
-             const refreshResponse = await axios.post('/auth/refresh', {
-                 refreshToken: localStorage.getItem('refreshToken')
-             });
-             localStorage.setItem('accessToken', refreshResponse.data.accessToken);
-             // Retry the original request
-             const retryResponse = await axios.get('/protected-route');
-             console.log(retryResponse.data);
-         } else {
-             console.error('API call error:', error);
-         }
-     }
- }
 
 export const CheckAuths = createAsyncThunk(
   "/auth/checkAuth",

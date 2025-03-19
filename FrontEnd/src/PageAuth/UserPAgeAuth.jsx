@@ -1,25 +1,38 @@
 import { useLocation, Navigate } from "react-router-dom";
 import React from "react";
+import { useSelector } from "react-redux";
+import UserLayer from "../pages/UserLayer";
 
-const UserPageAuth = ({ isAuth, children }) => { // Changed IsAuth to isAuth
+const UserPageAuth = ({ isAuth, children }) => {
   const location = useLocation();
   const login = "/login";
   const first = "/";
-  const sign_up = "/sign_up";
-  const dashboard = "user/dash_board";
-  
-  console.log(location.pathname);
-  console.log(isAuth);
+  const signUp = "/sign_up";
+  const dashboard = "/user/dash_board";
+  const { user } = useSelector((state) => state.Auth);
 
-  if (!isAuth && !(location.pathname === login || location.pathname === sign_up)) {
-    return <Navigate to={sign_up} />;
+  console.log(location.pathname);
+  console.log(user);
+
+  // If the user is not authenticated and trying to access a protected route
+  if (!isAuth && !(location.pathname === login || location.pathname === signUp || location.pathname === first)) {
+    console.log("Redirecting to login...");
+    return <Navigate to={login} />;
   }
-  
-  if (isAuth && (location.pathname === login || location.pathname === sign_up || location.pathname === first)) {
+
+  // If the user is authenticated and trying to access login or sign-up page
+  if (isAuth && (location.pathname === login || location.pathname === signUp || location.pathname === first)) {
+    console.log("Redirecting to dashboard...");
     return <Navigate to={dashboard} />;
   }
 
-  return <div>{children}</div>; // Explicitly return the children
+  // If the user is authenticated, render UserLayer with user info
+  if (isAuth) {
+    return <UserLayer user={user}>{children}</UserLayer>;
+  }
+
+  // If none of the conditions are met, render the children
+  return <div>{children}</div>;
 };
 
 export default UserPageAuth;

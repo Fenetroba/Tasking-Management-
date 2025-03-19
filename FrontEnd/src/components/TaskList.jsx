@@ -3,8 +3,9 @@ import "./style/tasklist.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBack2Fill, RiSearch2Line } from "react-icons/ri";
 import { findTasks } from "../store/Tasks_slice";
-
+import Loader from '../components/PageLoder'
 const TaskList = ({ taskList, taskListHandler, onSelectTask }) => {
+  
   const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector((state) => state.tasksName);
   const [FindTitle, setFindTitle] = useState("");
@@ -33,7 +34,7 @@ const TaskList = ({ taskList, taskListHandler, onSelectTask }) => {
           />
         </p>
       </div>
-      <div className="main_task_container">
+      <div className="main_task_contener">
         <h5>Find Your Tasks</h5>
         <p>
           <input
@@ -47,12 +48,12 @@ const TaskList = ({ taskList, taskListHandler, onSelectTask }) => {
 
       <div className="getedTasks">
         <h2>Task List</h2>
-        {loading && <p>Loading...</p>} {/* Show loading state */}
+        {loading && <Loader/>} {/* Show loading state */}
         {error && <p style={{ color: 'red' }}>{error}</p>} {/* Show error message */}
-        {FindTitle && tasks.length > 0 && tasks.map((t) => (
-          <div key={t._id} onClick={() => getDetailTaskHandler(t)}> {/* Pass the task to the handler */}
-            <h3>{t.title}</h3>
-            <p>{t.description}</p>
+        {FindTitle && tasks.length > 0 && tasks.map((t,i) => (
+          <div key={t._id} onClick={() => getDetailTaskHandler(t)} className="listTasksForFind"> {/* Pass the task to the handler */}
+             <p>{i+1}</p>
+            <h4>{t.title}</h4>
             <p>{t.deadLine}</p>
           </div>
         ))}

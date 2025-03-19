@@ -1,32 +1,37 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
+
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: {
       type: String,
-      required: [true, "the email is reqired"],
+      required: [true, "The email is required"],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, "the Password is reqired"],
-      minlength: [6, "the password must be greter than 6 digits"],
+      required: [true, "The password is required"],
+      minlength: [6, "The password must be greater than 6 digits"],
     },
-     UserTasks: [
-          {
-            quantity: {
-              type: Number,
-              default: 1,
-            },
-            Tasks: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "tasks",
-            },
-          },
-        ],
-    
+    refreshToken: { // Add this line
+      type: String,
+      required: true, // You can set this to true if you want to enforce it
+    },
+    UserTasks: [
+      {
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+        Tasks: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "tasks",
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
+
 const userAuthdata = mongoose.model("User", UserSchema);
 export default userAuthdata;

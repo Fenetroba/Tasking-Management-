@@ -8,15 +8,18 @@
 }
 .login_contener,.login_form{
   display: flex;
-  gap: 20px;
+  gap: 15px;
   flex-direction: column;
   width: 300px;
   height: 400px;
-  font-size: 20px;
+  font-size: 15px;
   margin-top: 40px;
 }
 .login_form{
-  background: linear-gradient(135deg, #bdcfe4e8 50%, #badaee25 90%);
+  border-radius: 27px;
+  background: #ddeff3;
+  box-shadow: inset 23px -23px 46px #9facaf,
+              inset -23px 23px 46px #e5f5f3;
 
   padding: 30px 30px;
   border-radius: 10px;
@@ -38,8 +41,8 @@
 }
 .directLogiOrSign{
   color: green;
-  font-size: 18px;
-  margin: 10px;
+  font-size: 14px;
+  /* margin: 10px; */
   padding: 6px;
 }
 .directLogiOrSign a{

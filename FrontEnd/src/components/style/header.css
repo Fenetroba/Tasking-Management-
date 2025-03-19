@@ -12,6 +12,7 @@ background-color: var(--blue);
      border-radius: 5px;
      border: none;
      cursor: pointer;
+     background-color: rgb(255, 174, 0);
 }
 .logoutBtn button:hover{
      background-color: white;
@@ -22,6 +23,14 @@ gap: 20px;
 }
 .mobile_size{
      display: none;
+}
+.Logo{
+     background-color: #fff;
+     padding: 1px 3px;
+     border-radius: 2px 0 0 20px;
+     display: flex;
+     align-items: center;
+     
 }
 .modelsButton{
      display: flex;

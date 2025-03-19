@@ -1,13 +1,16 @@
 
 .signup_contener{
   width: 300px;
-  font-size: 20px;
+  font-size: 15px;
 
 }
 .signUp_form{
-  background: linear-gradient(135deg, #bdcfe4e8 50%, #badaee25 90%);
+  border-radius: 27px;
+  background: #ddeff3;
+  box-shadow: inset 23px -23px 46px #9facaf,
+              inset -23px 23px 46px #e5f5f3;
+
   padding: 30px 30px;
-  border-radius: 10px;
   height: 400px;
   display: flex;
   justify-content: space-around;
@@ -18,7 +21,7 @@
   padding: 6px;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 .signUp_form button{
   padding: 6px;

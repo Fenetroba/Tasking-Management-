@@ -6,6 +6,7 @@ import { CheckAuths, loginUser } from "../store/userslice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../components/Loder.jsx"; // Ensure the loader component is named correctly
+import axiosInstance from "../lib/axios.js";
 
 const LoginPage = () => {
   const { loading } = useSelector((state) => state.Auth);
@@ -17,13 +18,13 @@ const LoginPage = () => {
 
   useEffect(() => {
     dispatch(CheckAuths());
-  }, [dispatch]);
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(loginUser(login)).then((data) => {
       if (data?.payload?.success) {
-        // toast.success("Successfully logged in");
+        toast.success("Successfully logged in");
       } else {
         toast.error(data.payload.message || "Login failed");
       }
@@ -31,8 +32,10 @@ const LoginPage = () => {
     });
   };
 
+
   return (
     <div className="login_top">
+     
       <ToastContainer /> {/* Add ToastContainer here to show notifications */}
       <div className="login_container">
         <h2>Login Here</h2>

@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style/main.css";
-import { useDispatch } from "react-redux";
-import { createTasks } from "../store/Tasks_slice.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createTasks,
+  DeleteTask,
+  fetchAllTasks,
+} from "../store/Tasks_slice.js";
 import TaskDetail from "./TaskDetail.jsx";
-import TaskList from "./TaskList"; // Import the TaskList component
-
+import TaskList from "./TaskList";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import bottomImage from "../assets/bottem.jpg";
 const Main = () => {
   const dispatch = useDispatch();
+  const { tasks } = useSelector((state) => state.tasksName);
+  const { fullTask } = useSelector((state) => state.tasksName);
+
   const [createTask, setCreateTask] = useState({
     title: "",
     description: "",
@@ -14,16 +23,21 @@ const Main = () => {
     deadLine: "",
   });
 
-  const [selectedTask, setSelectedTask] = useState(null); // State for the selected task
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [back, setback] = useState(false);
+
+  useEffect(() => {
+    console.log("Tasks have changed: ", tasks);
+  }, [tasks, selectedTask]);
 
   const CreateTaskHandleSubmit = async (e) => {
     e.preventDefault();
-    console.log(createTask);
     try {
-      dispatch(createTasks(createTask));
+      await dispatch(createTasks(createTask)).unwrap();
+      toast.success("Task created successfully!");
       setCreateTask({ title: "", description: "", deadLine: "", image: "" });
     } catch (error) {
-      console.log("the error occurred on CreateTask: " + error);
+      toast.error("Error creating task: " + error.message);
     }
   };
 
@@ -38,23 +52,43 @@ const Main = () => {
     }
   };
 
-  // Function to set the selected task
   const handleSelectTask = (task) => {
     setSelectedTask(task);
   };
 
+  const taskListHandler = () => {
+    setback(!back);
+  };
+
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await dispatch(DeleteTask(taskId)).unwrap(); // Delete the task
+      toast.success("Task deleted successfully!");
+      setSelectedTask(null); // Clear selected task after deletion
+    } catch (err) {
+      toast.error("Failed to delete the task.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      await dispatch(fetchAllTasks()); // Dispatch the fetchAllTasks action
+    };
+
+    fetchTasks();
+  }, [dispatch]);
   return (
     <div className="main">
+      <ToastContainer />
       <section className="displayDetail">
-        <TaskDetail task={selectedTask} />{" "}
-        {/* Pass selectedTask to TaskDetail */}
+        <TaskDetail task={selectedTask} onDelete={handleDeleteTask} />
+        <TaskList
+          taskList={!back}
+          taskListHandler={taskListHandler}
+          onSelectTask={handleSelectTask}
+        />
       </section>
-      <TaskList
-        taskList={true}
-        taskListHandler={() => {}}
-        onSelectTask={handleSelectTask}
-      />{" "}
-      {/* Pass the select task handler */}
+
       <section className="box1">
         <div className="createTask">
           <h1>Create Task</h1>
@@ -72,7 +106,6 @@ const Main = () => {
                   placeholder="Create Task"
                 />
               </div>
-
               <div className="form-group">
                 <label>Description</label>
                 <textarea
@@ -90,7 +123,6 @@ const Main = () => {
                   style={{ width: "100%", height: "200px" }}
                 />
               </div>
-
               <div className="form-group">
                 <label>Deadline</label>
                 <input
@@ -103,12 +135,10 @@ const Main = () => {
                   placeholder="Enter the last date"
                 />
               </div>
-
               <div className="form-group">
                 <label>Upload Image</label>
                 <input type="file" onChange={imageHandler} accept="image/*" />
               </div>
-
               <button type="submit" className="submit-button">
                 Create Task
               </button>
@@ -116,14 +146,19 @@ const Main = () => {
           </div>
         </div>
       </section>
-      <section className="box2">
-        <div className="average_completedTasks">
-          <h3>Tasks Overview</h3>
-          <h3>Completed Tasks</h3>
-          <h3>Expired Tasks</h3>
+      <section className="box2 botton_contener">
+        <div className="full_contener">
+          {fullTask &&
+            fullTask.map((tas,i) => (
+              <div key={tas._id} className="average_completedTasks">
+                <span>{i+1}</span>
+                <span>{tas.title}</span>
+                <span>{tas.deadLine}</span>
+              </div>
+            ))}
         </div>
-        <div className="completedTasks">
-          <p>Accomplished Tasks</p>
+        <div className="bottomImage">
+          <img src={bottomImage} alt="" />
         </div>
       </section>
     </div>

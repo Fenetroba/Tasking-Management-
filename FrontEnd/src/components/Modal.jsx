@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect, useRef } from "react";
 
 import './style/modal.css'
-import CreateAccount from './CreateAccount';
+// import CreateAccount from './CreateAccount';
 import TaskList from './TaskList';
 import { RiContactsBook2Fill, RiMedal2Fill } from 'react-icons/ri';
 const Modal = ({ isModalOpen, closeModel, children }) => {
@@ -51,8 +51,8 @@ const createAccountHandler=()=>{
         <div className='taskList_model'>
           <button onClick={taskListHandler}>TaskList <RiContactsBook2Fill/></button>
           <TaskList taskList={taskList} taskListHandler={taskListHandler}/>
-          <button onClick={createAccountHandler}>Socialmedia<RiMedal2Fill/></button>
-          <CreateAccount CreateAccounts={CreateAccounts} createAccountHandler={createAccountHandler}  />
+          {/* <button onClick={createAccountHandler}>Socialmedia<RiMedal2Fill/></button> */}
+          {/* <CreateAccount CreateAccounts={CreateAccounts} createAccountHandler={createAccountHandler}  /> */}
        
         </div>
         {children}

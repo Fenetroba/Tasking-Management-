@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./style/authLayer.css";
+import { useDispatch } from "react-redux";
+import { CheckAuths } from "../store/userslice";
+
+
+
 const AuthLayer = () => {
+
+  const dispatch=useDispatch()
+
+useEffect(() => {
+  dispatch(CheckAuths())
+}, []);
   const [authButton, setAuthButton] = useState(false);
   const AuthButtonHandler = () => {
     setAuthButton((prev) => !prev);
   };
-
   return (
     <div className="AuthLayer">
       <button className="LoginButton" onClick={AuthButtonHandler}>

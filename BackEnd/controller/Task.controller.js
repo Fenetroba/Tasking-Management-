@@ -51,23 +51,25 @@ export const getUserOwnTask = async (req, res) => {
   }
 };
 
-export const updateUserOwnTask = async (req, res) => {
-  const { id } = req.params;
-  const updatedData= req.body;
+export const updateUserOwnTask =async (req, res) => {
+  const { isCompleted } = req.body; // Get the completed status from the request body
+  const taskId = req.params.id; // Get the task ID from the URL parameters
 
- 
   try {
-    const Task = await Tasks.findByIdAndUpdate(id, updatedData, { new: true });
-    if (!Task) {
-      return res.status(404).json({ message: "Task not found" });
+    // Find the task by ID and update its completion status
+    const updatedTask = await Tasks.findByIdAndUpdate(
+      taskId,
+      { isCompleted }, // Update the isCompleted field
+      { new: true } // Return the updated task
+    );
+
+    if (!updatedTask) {
+      return res.status(404).json({ message: "Task not found." });
     }
 
-    res.json(Task);
+    res.status(200).json(updatedTask); // Send the updated task as response
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to Updating TAsk", error: error.message });
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Error updating task', error });
   }
 };
 export const DeletUserTask =  async (req, res) => {

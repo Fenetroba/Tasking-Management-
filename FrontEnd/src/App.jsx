@@ -1,3 +1,4 @@
+import React from 'react';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import AuthLayer from "./pages/AuthLayer.jsx";
@@ -22,8 +23,7 @@ function App() {
           path="/"
           element={
             <UserPageAuth isAuth={isAuthenticated}>
-              {" "}
-              {/* Updated name and casing */}
+              
               <AuthLayer />
             </UserPageAuth>
           }
@@ -41,7 +41,7 @@ function App() {
           }
         >
           <Route path="dash_board" element={<DashboardPage />} />
-          <Route path="task_detail" element={<TaskListPage />} />{" "}
+          <Route path="task_detail" element={<TaskListPage />} />
           {/* Corrected path name */}
         </Route>
 
