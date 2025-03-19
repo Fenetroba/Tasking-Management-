@@ -1,5 +1,5 @@
 import userAuthdata from "../model/UserAuth.model.js";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcryptjs";
 import env from 'dotenv';
 import jwt from 'jsonwebtoken';
 
