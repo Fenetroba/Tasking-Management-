@@ -5,6 +5,7 @@ import ConnectDb from './lib/Db.js';
 import cors from 'cors';
 import AuthRouter from './router/UserAuth.router.js';
 import TaskRouter from './router/Task.router.js';
+import path from "path";
 const __dirname = path.resolve();
 const app = express();
 app.use(express.json());
